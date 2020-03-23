@@ -11,13 +11,12 @@ $(function() {
   ];
 
   var container = $('.table1');
-  
-  /* global Handsontable: true */
+
   var hot = new Handsontable(container.get(0), {
     data: data,
-    contextMenu: true,          // 启用快捷菜单
-    manualRowResize : true,     // 允许行拖动  
-    manualColumnResize : true,  // 允许列拖动 
+    contextMenu: true,          
+    manualRowResize : true,       
+    manualColumnResize : true,  
     title:'2020年语言排行榜',
     colHeaders: [
       '语言名称',
@@ -29,9 +28,9 @@ $(function() {
 
   return hot;
 });
+
 //Echarts
 $(function() {
-  /* global echarts: true */
   var myChart = echarts.init($('.table2').get(0));
 
   var option = {
@@ -40,6 +39,10 @@ $(function() {
     },
     tooltip: {
       trigger : 'axis',
+      formatter:function(parmas){
+        console.log(parmas);
+        return parmas[0].seriesName + '</br>' + parmas[0].name +':'+parmas[0].value;
+      }
     },
     xAxis: {
       data: ["2020","2005","2010","2015","2020"]
